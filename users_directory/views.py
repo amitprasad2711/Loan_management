@@ -119,7 +119,7 @@ def delete_customer(request, pk):
 
 def customer_list(request):
 
-    query = request.GET.get("q")
+    query = request.GET.get("q","")
 
     customers = Customer.objects.all().order_by("-id")
 

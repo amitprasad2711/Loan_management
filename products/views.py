@@ -101,7 +101,7 @@ from django.db.models import Q
 
 def product_list(request):
 
-    query = request.GET.get("q")
+    query = request.GET.get("q","")
 
     products = Product.objects.all()
 
