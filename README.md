@@ -194,4 +194,8 @@ http://127.0.0.1:8000/accounts/login/
 
 Amit Prasad
 
+<<<<<<< HEAD
 Python Django Developer
+=======
+Python Django Developer
+>>>>>>> d0ef8e3a7a8a6d72b57330b7aa4fb7db7615dba6
