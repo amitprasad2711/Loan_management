@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}Dashboard{% endblock %}
+
+{% block content %}
+
+<h3 class="mb-4">Dashboard</h3>
+
+<div class="row">
+
+    <div class="col-md-3">
+        <div class="card text-bg-primary mb-3">
+            <div class="card-body">
+                <h6>Total Products</h6>
+                <h2>{{ total_products }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-bg-success mb-3">
+            <div class="card-body">
+                <h6>Total Customers</h6>
+                <h2>{{ total_customers }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-bg-info mb-3">
+            <div class="card-body">
+                <h6>Eligible Records</h6>
+                <h2>{{ eligible_count }}</h2>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-3">
+        <div class="card text-bg-danger mb-3">
+            <div class="card-body">
+                <h6>Not Eligible</h6>
+                <h2>{{ not_eligible_count }}</h2>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <div class="col-md-6">
+
+        <div class="card">
+
+            <div class="card-header">
+                Recent Customers
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-sm">
+
+                    <tr>
+                        <th>Name</th>
+                        <th>Salary</th>
+                    </tr>
+
+                    {% for customer in recent_customers %}
+
+                    <tr>
+
+                        <td>{{ customer.full_name }}</td>
+
+                        <td>{{ customer.monthly_salary }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+    <div class="col-md-6">
+
+        <div class="card">
+
+            <div class="card-header">
+                Recent Products
+            </div>
+
+            <div class="card-body">
+
+                <table class="table table-sm">
+
+                    <tr>
+
+                        <th>Loan Name</th>
+
+                        <th>Minimum Salary</th>
+
+                    </tr>
+
+                    {% for product in recent_products %}
+
+                    <tr>
+
+                        <td>{{ product.loan_name }}</td>
+
+                        <td>{{ product.min_salary }}</td>
+
+                    </tr>
+
+                    {% endfor %}
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+{% endblock %}

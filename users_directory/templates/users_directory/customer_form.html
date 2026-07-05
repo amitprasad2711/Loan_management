@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="card shadow">
+
+    <div class="card-header">
+
+        <h4>
+
+{% if form.instance.pk %}
+
+Edit Customer
+
+{% else %}
+
+Add Customer
+
+{% endif %}
+
+</h4>
+
+    </div>
+
+    <div class="card-body">
+
+        <form method="POST">
+
+            {% csrf_token %}
+
+            {{ form.as_p }}
+
+            <button type="submit" class="btn btn-success">
+
+{% if form.instance.pk %}
+
+Update Customer
+
+{% else %}
+
+Save Customer
+
+{% endif %}
+
+</button>
+
+            <a href="{% url 'customer_list' %}" class="btn btn-secondary">
+
+                Back
+
+            </a>
+
+        </form>
+
+    </div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-3">
+
+    <h3>Customers</h3>
+
+    {% if request.user.is_superuser %}
+    <a href="{% url 'add_customer' %}" class="btn btn-primary">
+        Add Customer
+    </a>
+    {% endif %}
+
+</div>
+<form method="GET" class="row mb-3">
+
+    <div class="col-md-4">
+
+        <input
+            type="text"
+            name="q"
+            value="{{ query }}"
+            class="form-control"
+            placeholder="Search Customer">
+
+    </div>
+
+    <div class="col-md-2">
+
+        <button type="submit" class="btn btn-primary">
+
+            Search
+
+        </button>
+
+    </div>
+
+</form>
+
+<table class="table table-bordered">
+
+    <thead>
+
+    <tr>
+
+        <th>Name</th>
+        <th>Age</th>
+        <th>Salary</th>
+        <th>Employment</th>
+        <th>Salary Type</th>
+        <th>Credit Score</th>
+        <th>Action</th>
+
+    </tr>
+
+    </thead>
+
+    <tbody>
+
+    {% for customer in customers %}
+
+        <tr>
+
+            <td>{{ customer.full_name }}</td>
+            <td>{{ customer.age }}</td>
+            <td>{{ customer.monthly_salary }}</td>
+            <td>{{ customer.employment_type }}</td>
+            <td>{{ customer.salary_type }}</td>
+            <td>{{ customer.credit_score }}</td>
+            <td><a href="{% url 'customer_report' customer.id %}" class="btn btn-info btn-sm">
+        View Report
+    </a>
+
+    {% if request.user.is_superuser %}
+    <a href="{% url 'edit_customer' customer.id %}" class="btn btn-warning btn-sm">
+        Edit
+    </a>
+    {% endif %}
+
+    {% if request.user.is_superuser %}
+    <a href="{% url 'delete_customer' customer.id %}" class="btn btn-danger btn-sm">
+        Delete
+    </a>
+    {% endif %}
+
+    </td>
+
+        </tr>
+
+    {% empty %}
+
+        <tr>
+
+            <td colspan="7">
+
+                No Customer Found
+
+            </td>
+
+        </tr>
+
+    {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

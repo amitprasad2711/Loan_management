@@ -1,0 +1,27 @@
+<div class="col-md-2 bg-dark text-white vh-100">
+
+    <h5 class="text-center py-3">
+        MENU
+    </h5>
+
+    <div class="list-group list-group-flush">
+
+        <a href="{% url 'dashboard' %}" class="list-group-item list-group-item-action">
+        <i class="bi bi-speedometer2"></i> Dashboard
+    </a>
+
+        <a href="{% url 'product_list' %}" class="list-group-item list-group-item-action">
+        <i class="bi bi-box"></i> Products
+    </a>
+
+        <a href="{% url 'customer_list' %}" class="list-group-item list-group-item-action">
+        <i class="bi bi-people"></i> Customers
+    </a>
+
+        <a href="{% url 'logout' %}" class="list-group-item list-group-item-action text-danger">
+            Logout
+        </a>
+
+    </div>
+
+</div>

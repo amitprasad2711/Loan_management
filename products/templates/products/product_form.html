@@ -1,0 +1,55 @@
+{% extends "base.html" %}
+
+<h4>
+{% if request.user.is_superuser %}
+    <a href="{% url 'add_product' %}" class="btn btn-primary">
+        Add Product
+    </a>
+{% endif %}
+</h4>
+
+{% block content %}
+
+<div class="container">
+
+<div class="card shadow">
+
+<div class="card-header bg-primary text-white">
+
+<h4>{% if form.instance.pk %}Edit Product{% else %}Add Product{% endif %}</h4>
+
+</div>
+
+<div class="card-body">
+
+<form metype="submit" method="POST">
+
+{% csrf_token %}
+
+{{ form.as_p }}
+
+<button type="submit" class="btn btn-success">
+
+{% if form.instance.pk %}
+Update Product
+{% else %}
+Save Product
+{% endif %}
+
+</button>
+
+<a href="{% url 'product_list' %}" class="btn btn-secondary">
+
+Back
+
+</a>
+
+</form>
+
+</div>
+
+</div>
+
+</div>
+
+{% endblock %}

@@ -1,0 +1,104 @@
+{% extends "base.html" %}
+
+{% block content %}
+
+<h2>Customer Report</h2>
+
+<hr>
+
+<h4>Customer Details</h4>
+
+<table class="table table-bordered">
+
+<tr>
+    <th>Name</th>
+    <td>{{ customer.full_name }}</td>
+</tr>
+
+<tr>
+    <th>Age</th>
+    <td>{{ customer.age }}</td>
+</tr>
+
+<tr>
+    <th>Salary</th>
+    <td>{{ customer.monthly_salary }}</td>
+</tr>
+
+<tr>
+    <th>Employment</th>
+    <td>{{ customer.employment_type }}</td>
+</tr>
+
+<tr>
+    <th>Salary Type</th>
+    <td>{{ customer.salary_type }}</td>
+</tr>
+
+<tr>
+    <th>Credit Score</th>
+    <td>{{ customer.credit_score }}</td>
+</tr>
+
+</table>
+
+<hr>
+
+<h4>Eligible Products</h4>
+
+<ul  class="list-group">
+
+{% for item in eligible_products %}
+
+<li class="list-group-item list-group-item-success">
+
+{{ item.product.loan_name }}
+
+</li>
+
+{% empty %}
+
+<li class="list-group-item">
+
+No Eligible Product
+
+</li>
+
+{% endfor %}
+
+</ul>
+
+<br>
+
+<h4>Not Eligible Products</h4>
+
+<ul  class="list-group">
+
+{% for item in not_eligible_products %}
+
+<li class="list-group-item list-group-item-danger">
+
+<strong>{{ item.product.loan_name }}</strong>
+
+<br>
+
+Reason:
+
+{{ item.reason }}
+
+</li>
+
+{% empty %}
+
+<li class="list-group-item">
+
+No Rejected Product
+
+</li>
+
+{% endfor %}
+
+</ul>
+<a href="{% url 'customer_list' %}" class="btn btn-secondary mt-3">Back</a>
+
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "base.html" %}
+
+{% block title %}Products{% endblock %}
+
+{% block content %}
+
+<div class="d-flex justify-content-between mb-3">
+
+<h3>Products</h3>
+
+<a href="{% url 'add_product' %}" class="btn btn-primary">
+
++ Add Product
+
+</a>
+
+
+</div>
+
+<form method="GET" class="row mb-3">
+
+    <div class="col-md-4">
+
+        <input
+            type="text"
+            name="q"
+            value="{{ query }}"
+            class="form-control"
+            placeholder="Search Product">
+
+    </div>
+
+    <div class="col-md-2">
+
+        <button type="submit" class="btn btn-primary">
+
+            Search
+
+        </button>
+
+    </div>
+
+</form>
+
+<table class="table table-bordered table-hover">
+
+<thead class="table-dark">
+
+<tr>
+
+<th>ID</th>
+
+<th>Loan</th>
+
+<th>Age</th>
+
+<th>Credit</th>
+
+<th>Employment</th>
+
+<th>Salary Type</th>
+
+<th>Min Salary</th>
+
+<th>Update</th>
+
+</tr>
+
+</thead>
+
+<tbody>
+
+{% for product in products %}
+
+<tr>
+
+<td>{{ product.id }}</td>
+
+<td>{{ product.loan_name }}</td>
+
+<td>{{ product.min_age }} - {{ product.max_age }}</td>
+
+<td>{{ product.min_credit_score }}</td>
+
+<td>{{ product.employment_type }}</td>
+
+<td>{{ product.salary_type }}</td>
+
+<td>{{ product.min_salary }}</td>
+
+<td>
+    {% if request.user.is_superuser %}
+    <a href="{% url 'edit_product' product.id %}" class="btn btn-warning btn-sm">
+        Edit
+    </a>
+    {% endif %}
+
+    {% if request.user.is_superuser %}
+    <a href="{% url 'delete_product' product.id %}" class="btn btn-danger btn-sm">
+        Delete
+    </a>
+    {% endif %}
+</td>
+
+
+
+</tr>
+
+{% empty %}
+
+<tr>
+
+<td colspan="7" class="text-center">
+
+No Products Found
+
+</td>
+
+</tr>
+
+{% endfor %}
+
+</tbody>
+
+</table>
+
+{% endblock %}
