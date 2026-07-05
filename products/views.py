@@ -5,7 +5,9 @@ from django.shortcuts import get_object_or_404
 from users_directory.models import Customer
 from users_directory.utils import evaluate_customer
 from django.http import HttpResponseForbidden
+from django.contrib.auth.decorators import login_required
 
+@login_required(login_url="login")
 def product_list(request):
 
     products = Product.objects.all()
@@ -18,7 +20,7 @@ def product_list(request):
         }
     )
 
-
+@login_required(login_url="login")
 def add_product(request):
 
     if not request.user.is_superuser:
@@ -46,7 +48,7 @@ def add_product(request):
         }
     )
 
-
+@login_required(login_url="login")
 def edit_product(request, pk):
 
     if not request.user.is_superuser:
@@ -81,7 +83,7 @@ def edit_product(request, pk):
             "form": form
         }
     )
-
+@login_required(login_url="login")
 def delete_product(request, pk):
 
     if not request.user.is_superuser:
@@ -99,6 +101,7 @@ def delete_product(request, pk):
 
 from django.db.models import Q
 
+@login_required(login_url="login")
 def product_list(request):
 
     query = request.GET.get("q","")

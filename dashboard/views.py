@@ -5,7 +5,7 @@ from products.models import Product
 from users_directory.models import Customer, EligibilityResult
 
 
-@login_required
+@login_required(login_url="login")
 def dashboard(request):
 
     context = {

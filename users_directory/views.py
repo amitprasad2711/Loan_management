@@ -4,6 +4,7 @@ from .forms import CustomerForm
 from .utils import evaluate_customer
 from .models import EligibilityResult
 from django.db.models import Q
+from django.contrib.auth.decorators import login_required
 
 def customer_list(request):
     customers = Customer.objects.all().order_by("-id")
@@ -16,7 +17,7 @@ def customer_list(request):
         }
     )
 
-
+@login_required(login_url="login")
 def add_customer(request):
 
     if request.method == "POST":
@@ -43,7 +44,7 @@ def add_customer(request):
         }
     )
 
-
+@login_required(login_url="login")
 def customer_report(request, pk):
 
     customer = Customer.objects.get(id=pk)
@@ -68,7 +69,7 @@ def customer_report(request, pk):
         }
     )
 
-
+@login_required(login_url="login")
 def edit_customer(request, pk):
 
     customer = get_object_or_404(Customer, pk=pk)
@@ -98,7 +99,7 @@ def edit_customer(request, pk):
         }
     )
 
-
+@login_required(login_url="login")
 def delete_customer(request, pk):
 
     customer = get_object_or_404(Customer, pk=pk)
@@ -116,7 +117,7 @@ def delete_customer(request, pk):
     )
 
 
-
+@login_required(login_url="login")
 def customer_list(request):
 
     query = request.GET.get("q","")

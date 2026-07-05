@@ -31,6 +31,8 @@ ALLOWED_HOSTS = [
     "amitprasad0304.pythonanywhere.com",
 ]
 
+LOGIN_URL = "login"
+LOGIN_REDIRECT_URL = "dashboard"
 
 # Application definition
 
